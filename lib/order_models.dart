@@ -5,11 +5,11 @@ class OrderModel {
 
   OrderModel({required this.id, required this.product, required this.price});
 
-  factory OrderModel.fromJson(Map<String, dynamic> json) {
+  factory OrderModel.fromJson(Map<String, dynamic> json){
     return OrderModel(
-      id: json['id'],
-      product: json['product'],
-      price: (json['price'] as num).toDouble(),
+      id: json["id"],
+      product: json["product"],
+      price: (json["price"] as num).toDouble(),
     );
   }
 
