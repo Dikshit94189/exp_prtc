@@ -27,30 +27,38 @@ final OrderViewModel orderViewModel = OrderViewModel();
   }
 
 
-  @override
-  Widget build(BuildContext context) {
-    switch(orderViewModel.apiStatus){
-      case ApiStatus.initial:
-        return SizedBox();
-      case ApiStatus.loading:
-        return CircularProgressIndicator();
-      case ApiStatus.success:
-        return ListView.builder(
-          itemCount:  orderViewModel.order.length,
-            itemBuilder: (context , index){
-              final orderS = orderViewModel.order[index];
+    @override
+    Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: const Text('Orders'),
+    ),
+    body: switch (orderViewModel.apiStatus) {
+      ApiStatus.initial => const SizedBox(),
 
-                  return ListTile(
-                    title: Text(orderS.product),
-                    subtitle: Text('₹${orderS.price}'),
-                    trailing: Text('#${orderS.id}'),
-                  );
+      ApiStatus.loading => const Center(
+        child: CircularProgressIndicator(),
+      ),
 
-        });
-      case ApiStatus.error:
-        return Center(
-          child: Text(orderViewModel.errorMessage ?? 'Something went wrong',),
-        );
-    }
-  }
+      ApiStatus.success => ListView.builder(
+        itemCount: orderViewModel.order.length,
+        itemBuilder: (context, index) {
+          final orderS = orderViewModel.order[index];
+
+          return ListTile(
+            title: Text(orderS.product),
+            subtitle: Text('₹${orderS.price}'),
+            trailing: Text('#${orderS.id}'),
+          );
+        },
+      ),
+
+      ApiStatus.error => Center(
+        child: Text(
+          orderViewModel.errorMessage ?? 'Something went wrong',
+        ),
+      ),
+    },
+  );
+}
 }
