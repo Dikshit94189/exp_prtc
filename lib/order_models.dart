@@ -17,7 +17,7 @@
 class OrderModel {
   final int id;
   final String product;
-  final dynamic price;
+  final double price;
 
   OrderModel({required this.id, required this.product, required this.price});
 

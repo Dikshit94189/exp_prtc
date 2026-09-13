@@ -1,10 +1,11 @@
 import 'package:sampleexpprtc/enums.dart';
+import 'package:sampleexpprtc/order_models.dart';
 import 'package:sampleexpprtc/order_response.dart';
 
 class OrderViewModel {
   ApiStatus apiStatus = ApiStatus.initial;
 
-  List<OrderResponse> order = [];
+  List<OrderModel> order = [];
   String? errorMessage;
 
   Future<void> fetchOrderRes() async {
